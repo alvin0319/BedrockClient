@@ -54,6 +54,7 @@ final class RakNetClient{
 				}
 			}
 		});
+		$this->thread->sendRakNetPacket();
 	}
 
 	public function disconnect() : void{

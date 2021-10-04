@@ -11,6 +11,7 @@ use pocketmine\network\mcpe\protocol\serializer\PacketSerializer;
 use pocketmine\network\mcpe\protocol\serializer\PacketSerializerContext;
 use pocketmine\network\mcpe\protocol\ServerboundPacket;
 use raklib\generic\Socket;
+use raklib\protocol\Packet;
 use raklib\utils\InternetAddress;
 use Thread;
 use Throwable;
@@ -101,6 +102,12 @@ final class RakNetThread extends Thread{
 			}
 		}
 		$this->closed = true;
+	}
+
+	public function sendRakNetPacket(Packet $packet) : void{
+		$stream = new \raklib\protocol\PacketSerializer("");
+		$packet->encode($stream);
+		$this->packetBuffer[] = $stream->getBuffer();
 	}
 
 	public function getIncomingPackets() : array{

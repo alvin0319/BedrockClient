@@ -1,29 +1,30 @@
 {
-    "name": "alvin0319/bedrock-client",
-    "description": "An implementation of Minecraft Bedrock client written in PHP",
-    "type": "library",
-    "require": {
-        "pocketmine/bedrock-protocol": "^2.0",
-        "pocketmine/raklib": "^0.14.1",
-        "pocketmine/nbt": "^0.3.0",
+	"name": "alvin0319/bedrock-client",
+	"description": "An implementation of Minecraft Bedrock client written in PHP",
+	"type": "library",
+	"require": {
+		"pocketmine/bedrock-protocol": "^2.0",
+		"pocketmine/raklib": "^0.14.1",
+		"pocketmine/nbt": "^0.3.0",
+		"react/event-loop": "1.2",
+		"ext-crypto": "*",
+		"ext-mbstring": "*",
 		"ext-pthreads": "3.2.1dev",
-        "ext-crypto": "*",
-        "react/event-loop": "1.2"
-	}
-    ,
-    "require-dev": {
-        "roave/security-advisories": "dev-latest"
-    },
-    "license": "LGPL",
-    "autoload": {
-        "psr-4": {
-            "src\\": "alvin0319/BedrockClient/"
-        }
-    },
-    "authors": [
-        {
-            "name": "alvin0319",
-            "email": "alvin7810@naver.com"
-        }
-    ]
+		"php": ">=8.0"
+	},
+	"require-dev": {
+		"roave/security-advisories": "dev-latest"
+	},
+	"license": "LGPL",
+	"autoload": {
+		"psr-4": {
+			"src\\": "alvin0319/BedrockClient/"
+		}
+	},
+	"authors": [
+		{
+			"name": "alvin0319",
+			"email": "alvin7810@naver.com"
+		}
+	]
 }
