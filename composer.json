@@ -1,0 +1,26 @@
+{
+    "name": "alvin0319/bedrock-client",
+    "description": "An implementation of Minecraft Bedrock client written in PHP",
+    "type": "library",
+    "require": {
+        "pocketmine/bedrock-protocol": "^2.0",
+        "pocketmine/raklib": "^0.14.1",
+        "pocketmine/nbt": "^0.3.0"
+    }
+    ,
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    },
+    "license": "LGPL",
+    "autoload": {
+        "psr-4": {
+            "src\\": "alvin0319/BedrockClient/"
+        }
+    },
+    "authors": [
+        {
+            "name": "alvin0319",
+            "email": "alvin7810@naver.com"
+        }
+    ]
+}
