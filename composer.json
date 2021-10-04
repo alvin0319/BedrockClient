@@ -5,8 +5,11 @@
     "require": {
         "pocketmine/bedrock-protocol": "^2.0",
         "pocketmine/raklib": "^0.14.1",
-        "pocketmine/nbt": "^0.3.0"
-    }
+        "pocketmine/nbt": "^0.3.0",
+		"ext-pthreads": "3.2.1dev",
+        "ext-crypto": "*",
+        "react/event-loop": "1.2"
+	}
     ,
     "require-dev": {
         "roave/security-advisories": "dev-latest"

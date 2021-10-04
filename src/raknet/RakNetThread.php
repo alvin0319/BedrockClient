@@ -29,9 +29,12 @@ final class RakNetThread extends Thread{
 
 	protected Volatile $packetBuffer;
 
+	protected Volatile $incomingPackets;
+
 	public function __construct(protected string $bindAddress, protected int $bindPort){
 		$this->guid = Thread::getCurrentThreadId();
 		$this->packetBuffer = new Volatile();
+		$this->incomingPackets = new Volatile();
 	}
 
 	public function setEncryptionEnabled(bool $encryptionEnabled = false, ?string $encryptionKey = null) : void{
@@ -64,6 +67,9 @@ final class RakNetThread extends Thread{
 
 	public function setClosed(bool $closed) : void{
 		$this->closed = $closed;
+		if($this->closed){
+			$this->socket->close();
+		}
 	}
 
 	public function isClosed() : bool{
@@ -85,7 +91,24 @@ final class RakNetThread extends Thread{
 				}
 				$this->socket->writePacket($chunk, $this->bindAddress, $this->bindPort);
 			}
+			$sourceAddress = null;
+			$sourcePort = null;
+			while(($packetBuffer = $this->socket->readPacket($sourceAddress, $sourcePort)) !== null){
+				if($this->context !== null){
+					$packetBuffer = $this->context->decrypt($packetBuffer);
+				}
+				$this->incomingPackets[] = $packetBuffer;
+			}
 		}
 		$this->closed = true;
+	}
+
+	public function getIncomingPackets() : array{
+		$res = [];
+		while($this->incomingPackets->count() > 0){
+			$chunk = $this->incomingPackets->shift();
+			$res[] = (string) $chunk;
+		}
+		return $res;
 	}
 }
